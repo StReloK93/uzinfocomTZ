@@ -5,50 +5,26 @@
         <img style="width: 100px" src="/element-plus-logo.svg" alt="Element logo" />
       </el-header>
       <el-main>
-        <el-table :data="tableData" border style="width: 100%">
-          <el-table-column prop="date" label="Date" width="180" />
+        <AddProductModal></AddProductModal>
+        <el-table :data="productStore.products" border style="width: 100%">
           <el-table-column prop="name" label="Name" width="180" />
-          <el-table-column prop="address" label="Address" />
+          <el-table-column prop="year_of_release" label="Year of release" width="180" />
+          <el-table-column prop="category" label="Category" />
+          <el-table-column prop="price" label="Price" />
+          <el-table-column prop="created_at" label="Created_at" />
+          <el-table-column prop="Hide" label="Hide" />
         </el-table>
       </el-main>
     </el-container>
   </el-container>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
-
-const activeIndex = ref('1')
-const handleSelect = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
-const tableData = [
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  }
-]
+import { useProduct, AddProductModal } from '@/entities/product'
+const productStore = useProduct()
+productStore.getProducts()
 </script>
 <style>
 .general-container {
   height: 100%;
-}
-.flex-grow {
-  flex-grow: 1;
 }
 </style>
