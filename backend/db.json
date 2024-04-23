@@ -1,0 +1,10 @@
+{
+  "users": [
+    {
+      "name": "Aziz",
+      "age": 31,
+      "profession": "Software engeneer"
+    }
+  ],
+  "products": []
+}
