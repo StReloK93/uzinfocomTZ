@@ -4,9 +4,9 @@
       <el-space :size="15">
         <el-select style="width: 150px" clearable @change="productStore.getProducts(filters)" v-model="filters.category"
           placeholder="Category">
-          <el-option v-for="category in categoryStore.categories" :label="category.name" :value="category.id!" />
+          <el-option v-for="category in categoryStore.categories" :key="category.id" :label="category.name" :value="category.id!" />
         </el-select>
-        <el-input v-model.lazy="filters.name" @input.lazy="searchInputChange" style="width: 200px" placeholder="Search"
+        <el-input v-model="filters.name" @input="searchInputChange" style="width: 200px" placeholder="Search"
           :suffix-icon="Search" clearable />
       </el-space>
       <AddProductModal></AddProductModal>
@@ -46,7 +46,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column fixed="right" label="" width="120">
+      <el-table-column fixed="right" width="120">
         <template #default="product">
           <EditProductModal :product=product.row />
           <el-popconfirm width="200" confirm-button-text="Delete" title="Are you sure to delete this?"
