@@ -1,5 +1,5 @@
 <template>
-   <div>
+   <el-space direction="vertical" alignment="start" :size="15">
       <el-button plain @click="dialog = true">
          Add new product
       </el-button>
@@ -13,8 +13,7 @@
             </el-form-item>
             <el-form-item>
                <el-select v-model="formData.category" placeholder="Category">
-                  <el-option label="Zone No.1" value="shanghai" />
-                  <el-option label="Zone No.2" value="beijing" />
+                  <el-option v-for="category in categories" :label="category.name" :value="category.id" />
                </el-select>
             </el-form-item>
          </el-form>
@@ -27,7 +26,7 @@
             </div>
          </template>
       </el-dialog>
-   </div>
+   </el-space>
 </template>
 
 <script setup lang="ts">
@@ -38,12 +37,31 @@ const dialog = ref(false)
 const formData: IProduct = reactive({
    name: "",
    year_of_release: null,
-   category: null,
+   category: undefined,
    price: null,
    created_at: new Date(),
-   Hide: true,
+   hide: true,
 })
 
 
+
+const categories = reactive([
+   {
+      "id": 1,
+      "name": "Shoes"
+   },
+   {
+      "id": 2,
+      "name": "Trousers"
+   },
+   {
+      "id": 3,
+      "name": "Shirt"
+   },
+   {
+      "id": 4,
+      "name": "Jacket"
+   }
+])
 
 </script>
