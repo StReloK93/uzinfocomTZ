@@ -1,53 +1,35 @@
-import { ref, computed } from 'vue'
+import { ref, type Ref } from 'vue'
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import type { IProduct } from '@/entities/product/interface'
+import config from '@/config'
+
 export const useProduct = defineStore('useProduct', () => {
-  const products = ref()
+  const host = `${config.backend_url}/products`
 
-  function getProducts() {
-    axios.get<IProduct[]>('https://uzinfocomtz.onrender.com/products').then((result) => {
-      console.log(result)
+  const products: Ref<IProduct[]> = ref([])
 
-      products.value = result.data
+  function getProducts(params: any) {
+    axios.get<IProduct[]>(host, { params }).then(({ data }) => (products.value = data))
+  }
+  async function create(product: IProduct) {
+    await axios.post<IProduct>(host, product).then(({ data }) => {
+      products.value.push(data)
     })
   }
 
-  function create() {
-    axios
-      .post<IProduct>('https://uzinfocomtz.onrender.com/products', {
-        name: 'Uzinfocom',
-        year_of_release: '2009',
-        category: 1,
-        price: 300,
-        created_at: new Date(),
-        Hide: true
-      })
-      .then((result) => {
-        products.value.push(result.data)
-      })
-  }
-
   function remove(id: string) {
-    axios.delete(`https://uzinfocomtz.onrender.com/products/${id}`).then((result) => {
+    axios.delete(`${host}/${id}`).then((result) => {
       products.value = products.value.filter((product: IProduct) => product.id != id)
     })
   }
 
-  function update(id: string) {
-    axios
-      .patch(`https://uzinfocomtz.onrender.com/products/${id}`, {
-        name: 'Uzinfocom',
-        year_of_release: '2009',
-        category: 1,
-        price: 300,
-        created_at: new Date(),
-        Hide: true
-      })
-      .then((result) => {
-        products.value.push(result.data)
-      })
+  async function update(id: string, productData: IProduct) {
+    await axios.patch(`${host}/${id}`, productData).then(({ data }) => {
+      const index = products.value.findIndex((product) => product.id == id)
+      products.value[index] = data
+    })
   }
 
-  return { products, getProducts, create, remove }
+  return { products, getProducts, create, update, remove }
 })

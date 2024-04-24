@@ -5,3 +5,13 @@ body {
 #app {
   height: 100dvh;
 }
+
+.general-container {
+  height: 100%;
+  background: #ececec;
+}
+
+.el-pepe-header {
+  background-color: white;
+  box-shadow: 0 0 3px 3px #dfdfdf;
+}

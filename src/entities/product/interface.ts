@@ -6,4 +6,5 @@ export interface IProduct {
   price: number | null
   created_at: Date | null
   hide: Boolean
+  image: string | null
 }
