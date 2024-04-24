@@ -1,15 +1,18 @@
 <template>
    <div>
       <el-button plain @click="dialog = true">
-         Open a Form nested Dialog
+         Add new product
       </el-button>
-      <el-dialog v-model="dialog" title="Shipping address" width="500">
+      <el-dialog v-model="dialog" title="Create new product" width="500">
          <el-form :model="formData">
-            <el-form-item label="Promotion name" :label-width="true">
-               <el-input v-model="formData.name" autocomplete="off" />
+            <el-form-item>
+               <el-input placeholder="Name" v-model="formData.name" autocomplete="off" />
             </el-form-item>
-            <el-form-item label="Zones" :label-width="true">
-               <el-select v-model="formData.category" placeholder="Please select a zone">
+            <el-form-item>
+               <el-input placeholder="Year of release" v-model="formData.year_of_release" autocomplete="off" />
+            </el-form-item>
+            <el-form-item>
+               <el-select v-model="formData.category" placeholder="Category">
                   <el-option label="Zone No.1" value="shanghai" />
                   <el-option label="Zone No.2" value="beijing" />
                </el-select>
@@ -32,13 +35,15 @@ import { ref, reactive } from 'vue'
 import { useProduct, type IProduct } from '@/entities/product'
 
 const dialog = ref(false)
-const formData = reactive({
-   name: null,
+const formData: IProduct = reactive({
+   name: "",
    year_of_release: null,
    category: null,
    price: null,
-   created_at: Date,
-   Hide: Boolean,
+   created_at: new Date(),
+   Hide: true,
 })
+
+
 
 </script>
