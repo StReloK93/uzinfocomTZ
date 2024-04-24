@@ -52,7 +52,7 @@
           <el-popconfirm width="200" confirm-button-text="Delete" title="Are you sure to delete this?"
             @confirm="productStore.remove(product.row.id)">
             <template #reference>
-              <el-button type="danger" :icon="Delete" circle />
+              <el-button type="danger" plain :icon="Delete" circle />
             </template>
           </el-popconfirm>
         </template>

@@ -1,5 +1,5 @@
 <template>
-	<el-button type="success" :icon="EditPen" circle @click="dialog = true" />
+	<el-button type="success" plain :icon="Edit" circle @click="dialog = true" />
 	<Teleport to="body">
 		<el-dialog destroy-on-close v-model="dialog" title="Create new product" width="500">
 			<el-form @submit.prevent="submit">
@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { EditPen } from '@element-plus/icons-vue'
+import { Edit } from '@element-plus/icons-vue'
 import { useProduct, type IProduct } from '@/entities/product'
 import { ref, type Ref } from 'vue'
 import FormProduct from './ProductInputs.vue'
