@@ -1,5 +1,5 @@
 <template>
-  <div>Hello mother fucker</div>
+  <div>Hello</div>
 </template>
 
 <script setup lang="ts"></script>

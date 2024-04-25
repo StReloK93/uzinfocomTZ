@@ -9,8 +9,8 @@ export const useProduct = defineStore('useProduct', () => {
 
   const products: Ref<IProduct[]> = ref([])
 
-  function getProducts(params: any) {
-    axios.get<IProduct[]>(host, { params }).then(({ data }) => (products.value = data))
+  async function getProducts(params: any) {
+    await axios.get<IProduct[]>(host, { params }).then(({ data }) => (products.value = data))
   }
   async function create(product: IProduct) {
     await axios.post<IProduct>(host, product).then(({ data }) => {
@@ -19,7 +19,7 @@ export const useProduct = defineStore('useProduct', () => {
   }
 
   function remove(id: string) {
-    axios.delete(`${host}/${id}`).then((result) => {
+    axios.delete(`${host}/${id}`).then(() => {
       products.value = products.value.filter((product: IProduct) => product.id != id)
     })
   }
