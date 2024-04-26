@@ -18,14 +18,15 @@
 <script setup lang="ts">
 import { Form } from 'vee-validate'
 import FormProduct from './ProductInputs.vue'
-import { useProduct, productSchema } from '@/entities/product'
+import { useProduct, productSchema, type IProduct } from '@/entities/product'
 import { ref, type Ref } from 'vue'
 const dialog: Ref<boolean> = ref(false)
 const loading = ref(false)
 
 async function submit(values: any) {
+	const data = productSchema.cast(values) as IProduct
 	loading.value = true
-	await productStore.create(values)
+	await productStore.create(data)
 	loading.value = false
 	dialog.value = false
 }

@@ -13,10 +13,5 @@ export default [
         component: () => import('@/views/admin/pages/ProductsTable.vue')
       }
     ]
-  },
-  {
-    path: '/auth',
-    name: 'auth',
-    component: () => import('@/views/auth/IndexAuth.vue')
   }
 ]
