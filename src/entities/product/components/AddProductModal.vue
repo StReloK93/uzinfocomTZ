@@ -20,6 +20,7 @@ import { Form } from 'vee-validate'
 import FormProduct from './ProductInputs.vue'
 import { useProduct, productSchema, type IProduct } from '@/entities/product'
 import { ref, type Ref } from 'vue'
+const emit = defineEmits(['create'])
 const dialog: Ref<boolean> = ref(false)
 const loading = ref(false)
 
@@ -27,6 +28,8 @@ async function submit(values: any) {
 	const data = productSchema.cast(values) as IProduct
 	loading.value = true
 	await productStore.create(data)
+	emit('create')
+
 	loading.value = false
 	dialog.value = false
 }

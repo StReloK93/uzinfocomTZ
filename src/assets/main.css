@@ -12,10 +12,25 @@ body {
 }
 
 .el-pepe-header {
-  background-color: white;
+  background-color: rgb(64 158 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
   box-shadow: 0 0 3px 3px #dfdfdf;
 }
 
 .default-padding {
   padding: 15px;
+}
+
+
+.no-wrap {
+  white-space: nowrap;
+  /* Отменяем перенос текста */
+  overflow: hidden;
+  /* Обрезаем содержимое */
+  text-overflow: ellipsis;
 }

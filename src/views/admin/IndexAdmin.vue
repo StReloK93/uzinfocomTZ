@@ -2,7 +2,9 @@
   <el-container class="general-container">
     <el-container>
       <el-header class="el-pepe-header">
-        UZINFOCOM TZ
+        <span>
+          UZINFOCOM TZ
+        </span>
       </el-header>
       <el-main>
         <el-card shadow="never" body-style="padding: 0px">

@@ -14,16 +14,16 @@ export const useProduct = defineStore('useProduct', () => {
 		products.value = result.data
 		return result
 	}
+	
 	async function create(product: IProduct) {
-		await axios.post<IProduct>(host, product).then(({ data }) => {
-			products.value.push(data)
-		})
+		await axios.post<IProduct>(host, product)
+		// products.value.push(data)
 	}
 
 	async function remove(id: string) {
-		await axios.delete(`${host}/${id}`).then(() => {
-			products.value = products.value.filter((product: IProduct) => product.id != id)
-		})
+		await axios.delete(`${host}/${id}`)
+
+		// products.value = products.value.filter((product: IProduct) => product.id != id)
 	}
 
 	async function update(id: string, productData: IProduct) {
